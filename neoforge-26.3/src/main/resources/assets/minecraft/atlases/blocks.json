@@ -1,0 +1,24 @@
+{
+  "sources": [
+    {
+      "type": "minecraft:single",
+      "resource": "goetia:item/lost_angel_notes",
+      "sprite": "goetia:block/lost_angel_notes"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goetia:item/lost_demon_notes",
+      "sprite": "goetia:block/lost_demon_notes"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goetia:fluid/holy_still",
+      "sprite": "goetia:fluid/holy_still"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goetia:fluid/holy_flowing",
+      "sprite": "goetia:fluid/holy_flowing"
+    }
+  ]
+}

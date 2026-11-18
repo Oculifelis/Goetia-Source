@@ -1,0 +1,371 @@
+[
+  {
+    "index": 0,
+    "name": "burningTouch",
+    "alignment": "DEMON",
+    "cost": 30,
+    "shape": [
+      1,
+      6,
+      3,
+      4
+    ],
+    "icon": "minecraft:blaze_powder",
+    "effect": {
+      "type": "timed_tag",
+      "tag": "burning_touch"
+    },
+    "duration": 600,
+    "source": "spellcasting/demon/SpellBurningTouch.java",
+    "legacyIcon": {
+      "item": "minecraft:blaze_powder",
+      "metadata": 0
+    }
+  },
+  {
+    "index": 1,
+    "name": "fireball",
+    "alignment": "DEMON",
+    "cost": 47,
+    "shape": [
+      6,
+      4,
+      2
+    ],
+    "icon": "minecraft:fire_charge",
+    "effect": {
+      "type": "large_fireball",
+      "serverOnly": true,
+      "position": "position + look + eye height on Y",
+      "accelerationInputScale": 0.01,
+      "shooter": null
+    },
+    "duration": null,
+    "source": "spellcasting/demon/SpellFireball.java",
+    "legacyIcon": {
+      "item": "minecraft:fire_charge",
+      "metadata": 0
+    }
+  },
+  {
+    "index": 2,
+    "name": "rebuke",
+    "alignment": "DEMON",
+    "cost": 73,
+    "shape": [
+      5,
+      2,
+      4,
+      6,
+      2
+    ],
+    "icon": "minecraft:bow",
+    "effect": {
+      "type": "timed_tag",
+      "tag": "rebuke"
+    },
+    "duration": 600,
+    "source": "spellcasting/demon/SpellRebuke.java",
+    "legacyIcon": {
+      "item": "minecraft:bow",
+      "metadata": 0
+    }
+  },
+  {
+    "index": 3,
+    "name": "fallenArmor",
+    "alignment": "DEMON",
+    "cost": 138,
+    "shape": [
+      4,
+      6,
+      2,
+      4,
+      5,
+      3,
+      4
+    ],
+    "icon": "minecraft:chainmail_chestplate",
+    "effect": {
+      "type": "timed_tag",
+      "tag": "fallen_armor"
+    },
+    "duration": 600,
+    "source": "spellcasting/demon/SpellFallenArmor.java",
+    "legacyIcon": {
+      "item": "minecraft:chainmail_chestplate",
+      "metadata": 0
+    }
+  },
+  {
+    "index": 4,
+    "name": "chainedStrikes",
+    "alignment": "DEMON",
+    "cost": 171,
+    "shape": [
+      1,
+      6,
+      3,
+      4,
+      5,
+      2,
+      1
+    ],
+    "icon": "minecraft:string",
+    "effect": {
+      "type": "timed_tag",
+      "tag": "chained_strikes"
+    },
+    "duration": 600,
+    "source": "spellcasting/demon/SpellChainedStrikes.java",
+    "legacyIcon": {
+      "item": "minecraft:string",
+      "metadata": 0
+    }
+  },
+  {
+    "index": 5,
+    "name": "ebonWings",
+    "alignment": "DEMON",
+    "cost": 196,
+    "shape": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      1,
+      4,
+      6,
+      3,
+      1
+    ],
+    "icon": "minecraft:feather",
+    "effect": {
+      "type": "flight",
+      "tag": "wings_tag",
+      "grantAllowFlyingToNoncreative": true,
+      "revokeOnExpiry": false
+    },
+    "duration": 1800,
+    "source": "spellcasting/demon/SpellEbonWings.java",
+    "legacyIcon": {
+      "item": "minecraft:feather",
+      "metadata": 0
+    }
+  },
+  {
+    "index": 6,
+    "name": "voraciousStrike",
+    "alignment": "DEMON",
+    "cost": 250,
+    "shape": [
+      1,
+      6,
+      2,
+      5,
+      3,
+      4,
+      1
+    ],
+    "icon": "minecraft:diamond_sword",
+    "effect": {
+      "type": "timed_tag",
+      "tag": "voracious_strikes"
+    },
+    "duration": 300,
+    "source": "spellcasting/demon/SpellVoraciousStrike.java",
+    "legacyIcon": {
+      "item": "minecraft:diamond_sword",
+      "metadata": 0
+    }
+  },
+  {
+    "index": 7,
+    "name": "innerFire",
+    "alignment": "DEMON",
+    "cost": 111,
+    "shape": [
+      3,
+      2,
+      1,
+      4,
+      5,
+      6
+    ],
+    "icon": "minecraft:flint_and_steel",
+    "effect": {
+      "type": "timed_tag",
+      "tag": "inner_fire_grace"
+    },
+    "duration": 2400,
+    "source": "spellcasting/demon/SpellInnerFire.java",
+    "legacyIcon": {
+      "item": "minecraft:flint_and_steel",
+      "metadata": 0
+    }
+  },
+  {
+    "index": 8,
+    "name": "innerGrace",
+    "alignment": "ANGEL",
+    "cost": 111,
+    "shape": [
+      3,
+      2,
+      1,
+      4,
+      5,
+      6
+    ],
+    "icon": "minecraft:diamond",
+    "effect": {
+      "type": "timed_tag",
+      "tag": "inner_fire_grace"
+    },
+    "duration": 2400,
+    "source": "spellcasting/angel/SpellInnerGrace.java",
+    "legacyIcon": {
+      "item": "minecraft:diamond",
+      "metadata": 0
+    }
+  },
+  {
+    "index": 9,
+    "name": "angelicWings",
+    "alignment": "ANGEL",
+    "cost": 196,
+    "shape": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      1,
+      4,
+      6,
+      3,
+      1
+    ],
+    "icon": "minecraft:feather",
+    "effect": {
+      "type": "flight",
+      "tag": "wings_tag",
+      "grantAllowFlyingToNoncreative": true,
+      "revokeOnExpiry": false
+    },
+    "duration": 1800,
+    "source": "spellcasting/angel/SpellAngelicWings.java",
+    "legacyIcon": {
+      "item": "minecraft:feather",
+      "metadata": 0
+    }
+  },
+  {
+    "index": 10,
+    "name": "angelicGrowth",
+    "alignment": "ANGEL",
+    "cost": 325,
+    "shape": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "icon": "minecraft:bone_meal",
+    "effect": {
+      "type": "growable_direct",
+      "x": [
+        0,
+        9
+      ],
+      "y": [
+        0,
+        1
+      ],
+      "z": [
+        0,
+        9
+      ],
+      "centered": false,
+      "canGrowCheck": false
+    },
+    "duration": null,
+    "source": "spellcasting/angel/SpellAngelicGrowth.java",
+    "legacyIcon": {
+      "item": "minecraft:dye",
+      "metadata": 15
+    }
+  },
+  {
+    "index": 11,
+    "name": "smite",
+    "alignment": "ANGEL",
+    "cost": 1000,
+    "shape": [
+      1,
+      5,
+      3,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      1
+    ],
+    "icon": "minecraft:golden_sword",
+    "effect": {
+      "type": "string_tag",
+      "tag": "smite",
+      "value": "ready",
+      "consume": "next direct-player attack against nonplayer living target",
+      "extraDamage": "current target health",
+      "damageSource": "magic"
+    },
+    "duration": null,
+    "source": "spellcasting/angel/SpellSmite.java",
+    "legacyIcon": {
+      "item": "minecraft:golden_sword",
+      "metadata": 0
+    }
+  },
+  {
+    "index": 12,
+    "name": "storm",
+    "alignment": "ANGEL",
+    "cost": 540,
+    "shape": [
+      4,
+      5,
+      3,
+      1
+    ],
+    "icon": "minecraft:ghast_tear",
+    "effect": {
+      "type": "lightning",
+      "serverOnly": true,
+      "count": 8,
+      "xOffset": [
+        -5,
+        11
+      ],
+      "zOffset": [
+        -5,
+        11
+      ],
+      "height": "caster Y",
+      "effectOnly": false
+    },
+    "duration": null,
+    "source": "spellcasting/angel/SpellStorm.java",
+    "legacyIcon": {
+      "item": "minecraft:ghast_tear",
+      "metadata": 0
+    }
+  }
+]

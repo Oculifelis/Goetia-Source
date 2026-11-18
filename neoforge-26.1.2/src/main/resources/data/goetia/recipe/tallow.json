@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:beef",
+    "minecraft:beef"
+  ],
+  "result": {
+    "id": "goetia:tallow",
+    "count": 1
+  }
+}

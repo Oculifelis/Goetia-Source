@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " S ",
+    "SSS",
+    " S "
+  ],
+  "key": {
+    "S": "#c:stones"
+  },
+  "result": {
+    "id": "goetia:holy_cross",
+    "count": 1
+  }
+}

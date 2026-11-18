@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:gunpowder",
+    "minecraft:redstone",
+    "minecraft:red_dye",
+    "minecraft:charcoal"
+  ],
+  "result": {
+    "id": "goetia:demonic_chalk",
+    "count": 1
+  }
+}

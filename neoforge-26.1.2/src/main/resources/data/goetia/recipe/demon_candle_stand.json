@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " S ",
+    " T ",
+    " T "
+  ],
+  "key": {
+    "S": "goetia:demon_candle",
+    "T": "#c:nuggets/gold"
+  },
+  "result": {
+    "id": "goetia:demon_candle_stand",
+    "count": 1
+  }
+}

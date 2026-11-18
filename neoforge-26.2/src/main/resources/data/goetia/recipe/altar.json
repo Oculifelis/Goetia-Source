@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SCS",
+    "SCS"
+  ],
+  "key": {
+    "S": "#c:stones",
+    "C": "#c:storage_blocks/coal"
+  },
+  "result": {
+    "id": "goetia:altar",
+    "count": 1
+  }
+}

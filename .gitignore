@@ -1,0 +1,10 @@
+**/.gradle/
+**/build/
+**/run*/
+**/.idea/
+*.log
+/reference/
+/dist/
+
+/old/
+/PITCH-CHECK-*.md

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "goetia:candle_stand"
+    },
+    {
+      "item": "goetia:bottle_holy_water"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "item": "goetia:angel_candle_stand"
+  }
+}

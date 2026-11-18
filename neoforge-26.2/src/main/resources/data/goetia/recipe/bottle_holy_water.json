@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:potion",
+    {
+      "neoforge:ingredient_type": "neoforge:components",
+      "items": [
+        "goetia:holy_cross"
+      ],
+      "components": {
+        "minecraft:damage": 0
+      },
+      "strict": false
+    }
+  ],
+  "result": {
+    "id": "goetia:bottle_holy_water",
+    "count": 1
+  }
+}

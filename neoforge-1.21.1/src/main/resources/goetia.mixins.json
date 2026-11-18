@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "teamroots.goetia.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "LivingAttackMixin",
+    "PlayerDamageMixin",
+    "FireballFlightMixin",
+    "PlayerStateMixin",
+    "HolyWaterQueriesMixin",
+    "ProjectileDataMixin",
+    "ProjectileOwnerMixin",
+    "LargeFireballPunchMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "ingredient": "goetia:demon_hide",
+  "result": {
+    "id": "minecraft:leather",
+    "count": 1
+  },
+  "experience": 1,
+  "cookingtime": 200
+}

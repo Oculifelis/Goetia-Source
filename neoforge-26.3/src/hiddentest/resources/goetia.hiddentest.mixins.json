@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "teamroots.goetia.hiddentest.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "client": [
+    "NoGrabMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

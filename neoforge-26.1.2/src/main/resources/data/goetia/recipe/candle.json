@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " S ",
+    " T "
+  ],
+  "key": {
+    "S": "minecraft:string",
+    "T": "goetia:tallow"
+  },
+  "result": {
+    "id": "goetia:candle",
+    "count": 4
+  }
+}

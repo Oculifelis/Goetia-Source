@@ -1,0 +1,25 @@
+package teamroots.goetia.client;
+import com.google.gson.*;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import net.minecraft.core.particles.*;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.phys.AABB;
+import teamroots.goetia.*;
+public final class GoetiaEffects {
+ private static final java.util.Random RANDOM=new java.util.Random();private static final JsonObject DATA=load();
+ private static JsonObject load(){try(var in=GoetiaEffects.class.getResourceAsStream("/assets/goetia/legacy_particles.json")){if(in==null)throw new IllegalStateException("Missing effects");return JsonParser.parseReader(new InputStreamReader(in,StandardCharsets.UTF_8)).getAsJsonObject();}catch(Exception e){throw new IllegalStateException(e);}}
+ private static ParticleOptions type(String name,double green){return switch(name){case "FLAME"->ParticleTypes.FLAME;case "SMOKE_LARGE"->ParticleTypes.LARGE_SMOKE;case "SMOKE_NORMAL"->ParticleTypes.SMOKE;case "CRIT_MAGIC"->ParticleTypes.ENCHANTED_HIT;case "CRIT"->ParticleTypes.CRIT;case "CLOUD"->ParticleTypes.CLOUD;case "REDSTONE"->new DustParticleOptions(0xFF0000|(Math.max(0,Math.min(255,(int)(green*255)))<<8),1);default->throw new IllegalArgumentException(name);};}
+ private static void emit(Entity e,String type,double x,double y,double z,double vx,double vy,double vz){e.level().addParticle(type(type,vy),x,y,z,type.equals("REDSTONE")?0:vx,type.equals("REDSTONE")?0:vy,type.equals("REDSTONE")?0:vz);}
+ private static void emissions(Entity e,JsonArray list,double x,double y,double z){for(var value:list){var v=value.getAsJsonObject();int chance=v.get("chance").getAsInt();if(chance>0&&RANDOM.nextInt(chance)!=0)continue;double up=v.get("up").getAsBoolean()?.015*RANDOM.nextFloat():0;emit(e,v.get("type").getAsString(),x,y,z,0,up,0);}}
+ public static void ring(LivingEntity e,String name){var list=DATA.getAsJsonObject("patterns").getAsJsonArray(name);if(list==null)return;for(float a=0;a<360;a+=7.5f){float x=.75f*(float)Math.sin(Math.toRadians(a)),z=.75f*(float)Math.cos(Math.toRadians(a));emissions(e,list,e.getX()+x,e.getY()+e.getEyeHeight()/2.0,e.getZ()+z);}}
+ public static void spell(Player p,String name){var s=GoetiaSpells.ALL.stream().filter(v->v.name().equals(name)).findFirst().orElseThrow();if(s.duration()!=null)GoetiaPlayer.data(p).putInt(s.effect().tag(),s.duration());if(s.effect().type().equals("string_tag"))GoetiaPlayer.data(p).putString("smite","ready");if(s.effect().type().equals("flight")&&!p.isCreative()){p.getAbilities().mayfly=true;p.onUpdateAbilities();}ring(p,DATA.getAsJsonObject("spells").get(name).getAsString());}
+ public static void tick(Player p){var d=GoetiaPlayer.data(p);boolean demon=GoetiaPlayer.lean(p)==GoetiaPlayer.Alignment.DEMON;if(d.contains("wings_tag")&&!p.onGround()){for(float a=0;a<360;a+=45+45*RANDOM.nextFloat()){float x=.5f*(float)Math.sin(Math.toRadians(a)),z=.5f*(float)Math.cos(Math.toRadians(a));double y=p.getY()+p.getEyeHeight()/2.0;if(RANDOM.nextInt(2)==0)emit(p,demon?"REDSTONE":"CRIT_MAGIC",p.getX()+x,y,p.getZ()+z,0,.015*RANDOM.nextFloat(),0);emit(p,demon?"SMOKE_NORMAL":"CRIT",p.getX()+x,y,p.getZ()+z,0,.015*RANDOM.nextFloat(),0);}}if(d.contains("inner_fire_grace"))for(int i=0;i<15;i++)emit(p,demon?"SMOKE_NORMAL":"CLOUD",p.getX()+RANDOM.nextFloat()-.5f,p.getY()+p.getEyeHeight()/2.0,p.getZ()+RANDOM.nextFloat()-.5f,0,0,0);}
+ public static void attack(LivingEntity victim,DamageSource source){if(!source.is(DamageTypes.PLAYER_ATTACK)||!(source.getEntity() instanceof Player p))return;var d=GoetiaPlayer.data(p);if(d.contains("fallen_armor")){d.putInt("fallen_armor",d.getIntOr("fallen_armor",0)+60);ring(p,"demon_third");}if(d.contains("chained_strikes"))for(var target:p.level().getEntitiesOfClass(LivingEntity.class,new AABB(victim.getX()-2.5,victim.getY()-2,victim.getZ()-2.5,victim.getX()+2.5,victim.getY()+2,victim.getZ()+2.5)))if(!target.getUUID().equals(p.getUUID())&&!target.getUUID().equals(victim.getUUID()))for(int i=0;i<80;i++){if(RANDOM.nextInt(2)==0)emit(target,"SMOKE_LARGE",target.getX(),target.getY()+target.getEyeHeight()/2.0,target.getZ(),.05*(RANDOM.nextFloat()-.5),.05*(RANDOM.nextFloat()-.5),.05*(RANDOM.nextFloat()-.5));emit(target,"SMOKE_NORMAL",target.getX(),target.getY()+target.getEyeHeight()/2.0,target.getZ(),.15*(RANDOM.nextFloat()-.5),.15*(RANDOM.nextFloat()-.5),.15*(RANDOM.nextFloat()-.5));}}
+ public static void ritual(net.minecraft.core.BlockPos pos,Player p){var w=p.level();boolean cleanse=GoetiaRituals.cleanseMatches(w,pos);if(!cleanse&&!w.getBlockState(pos.above()).is(GoetiaContent.block("full_bowl")))return;for(int a=0;a<360;a++){double x=pos.getX()+.5+.4*Math.cos(Math.toRadians(a)),z=pos.getZ()+.5+.4*Math.sin(Math.toRadians(a));if(cleanse){emit(p,"FLAME",pos.getX()+.5,pos.getY()+1,pos.getZ()+.5,0,.03*RANDOM.nextFloat(),0);emit(p,"REDSTONE",x,pos.getY()+1,z,0,2,0);}else emit(p,"SMOKE_LARGE",x,pos.getY()+1,z,0,.05,0);}}
+ private GoetiaEffects(){}
+}

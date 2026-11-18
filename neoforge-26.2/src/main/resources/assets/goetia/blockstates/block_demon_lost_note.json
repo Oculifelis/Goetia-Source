@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "goetia:block/lost_note"
+    },
+    "facing=south": {
+      "model": "goetia:block/lost_note",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "goetia:block/lost_note",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "goetia:block/lost_note",
+      "y": 90
+    }
+  }
+}

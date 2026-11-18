@@ -1,0 +1,7 @@
+{
+  "type": "goetia:ancient_notes",
+  "condition": {
+    "loot_table_id": "minecraft:chests/simple_dungeon",
+    "type": "neoforge:loot_table_id"
+  }
+}
