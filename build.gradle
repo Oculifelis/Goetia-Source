@@ -1,0 +1,64 @@
+plugins { id 'java-library'; id 'net.neoforged.moddev.legacyforge' version '2.0.148' }
+version = project.mod_version + '+' + project.minecraft_version
+group = 'teamroots.goetia'
+base { archivesName = 'goetia-forge' }
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+java.withSourcesJar()
+legacyForge {
+ version = project.minecraft_version + '-' + project.forge_version
+ parchment { minecraftVersion='1.20.1'; mappingsVersion='2023.09.03' }
+ runs {
+  client { client() }
+  server { server(); programArgument '--nogui' }
+  if (project.hasProperty('portTests')) { gameTestServer { type = 'gameTestServer'; gameDirectory = project.file('run-porttest'); systemProperty 'forge.enabledGameTestNamespaces', 'goetia' } }
+  configureEach { logLevel = org.slf4j.event.Level.INFO }
+ }
+ mods { goetia { sourceSet(sourceSets.main) } }
+}
+if (project.hasProperty('portTests')) { sourceSets.main.java.srcDir 'src/porttest/java'; sourceSets.main.resources.srcDir 'src/porttest/resources' }
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8'; options.compilerArgs += ['-Xmaxerrs','1000'] }
+tasks.named('jar') { exclude 'teamroots/goetia/porttest/**'; exclude 'data/goetia/structures/port_empty9.nbt' }
+tasks.named('sourcesJar') { exclude 'teamroots/goetia/porttest/**'; exclude 'data/goetia/structures/port_empty9.nbt' }
+
+repositories { maven { url='https://maven.blamejared.com/'; content { includeGroup 'mezz.jei'; includeGroup 'net.mezzdev.config' } } }
+configurations { runtimeClasspath.extendsFrom localRuntime }
+dependencies {
+ modCompileOnly 'mezz.jei:jei-1.20.1-common-api:15.71.0.224'
+ modCompileOnly 'mezz.jei:jei-1.20.1-forge-api:15.71.0.224'
+ if(project.hasProperty('withJei'))modRuntimeOnly 'mezz.jei:jei-1.20.1-forge:15.71.0.224'
+}
+
+
+if (project.hasProperty('hiddenTest')) {
+ sourceSets.main.java.srcDir 'src/hiddentest/java'
+ sourceSets.main.resources.srcDir 'src/hiddentest/resources'
+ legacyForge.runs.client {
+  gameDirectory = project.file('run-hidden-porttest')
+  jvmArgument '-Xmx3G'
+  systemProperty 'goetia.autotest', 'true'
+ }
+}
+tasks.named('processResources') {
+ inputs.property 'hiddenTest',project.hasProperty('hiddenTest')
+ doLast { if(project.hasProperty('hiddenTest')) { file("$destinationDir/META-INF/mods.toml").append('\n') } }
+}
+tasks.named('jar') {
+ exclude 'teamroots/goetia/hiddentest/**'; exclude 'goetia.hiddentest.mixins.json'
+ doFirst { if(project.hasProperty('hiddenTest'))throw new GradleException('Hidden test profile cannot package artifacts') }
+}
+tasks.named('sourcesJar') { exclude 'teamroots/goetia/hiddentest/**'; exclude 'goetia.hiddentest.mixins.json' }
+
+tasks.named('jar') {
+ from('LICENSE') { into 'META-INF/licenses/goetia' }
+ from('licenses/Goetia-MIT.txt') { into 'META-INF/licenses/goetia' }
+ from('CREDITS.md') { into 'META-INF/licenses/goetia' }
+}
+tasks.named('sourcesJar') {
+ from('LICENSE') { into 'META-INF/licenses/goetia' }
+ from('licenses/Goetia-MIT.txt') { into 'META-INF/licenses/goetia' }
+ from('CREDITS.md') { into 'META-INF/licenses/goetia' }
+}
+
+tasks.named('jar') { manifest.attributes('MixinConfigs':'goetia.mixins.json') }
+dependencies { annotationProcessor 'org.spongepowered:mixin:0.8.5:processor' }
+mixin { add sourceSets.main,'goetia.refmap.json'; config 'goetia.mixins.json'; if(project.hasProperty('hiddenTest'))config 'goetia.hiddentest.mixins.json' }
